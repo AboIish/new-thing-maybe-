@@ -14,7 +14,7 @@ local CurrentCamera = Workspace.CurrentCamera
 local DaHoodSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.15529888,
+    Prediction = 0.13453391634,
     AimLockKeybind = Enum.KeyCode.E
 }
 getgenv().DaHoodSettings = DaHoodSettings
@@ -132,5 +132,5 @@ game:GetService("RunService").RenderStepped:Connect(function()
      pingValue = Value:split(" ")
      PingNumber = pingValue[1]
     
-     DaHoodSettings.Prediction = PingNumber / 95000 + _G.PRED
+     DaHoodSettings.Prediction = PingNumber / 99000 + _G.PRED
 end)
