@@ -1,3 +1,4 @@
+_G.PRED = 0.00010
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/AustraIia/new-thing-maybe-/main/aiming"))()
 Aiming.TeamCheck(false)
 
@@ -106,36 +107,30 @@ end)
 				end
 			end
 		)
-local RunService = game:GetService("RunService")
-local desiredInterval = 15--fire every 2.5 seconds
-local counter = 0
-RunService.Heartbeat:Connect(function(step)
-	counter = counter + step  --step is time in seconds since the previous frame
-	if counter >= desiredInterval then
-	    counter = counter - desiredInterval
-RunService.Heartbeat:Connect(function()
-    pcall(function()
-        for i,v in pairs(game.Players:GetChildren()) do
-            if v.Name ~= game.Players.LocalPlayer.Name then
-                local hrp = v.Character.HumanoidRootPart
-                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
-                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
-            end
-        end
-    end)
-end)
-    end
-end)
-local RunService = game:GetService("RunService")
 
-RunService.Heartbeat:Connect(function()
-    pcall(function()
-        for i,v in pairs(game.Players:GetChildren()) do
-            if v.Name ~= game.Players.LocalPlayer.Name then
-                local hrp = v.Character.HumanoidRootPart
-                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
-                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
-            end
-        end
-    end)
+game:service"UserInputService".InputBegan:connect(function(key)
+if key.KeyCode == Enum.KeyCode[DaHoodSettings.SilentAimBind] then
+if DaHoodSettings.SilentAim == false then
+ DaHoodSettings.SilentAim = true
+else
+if DaHoodSettings.SilentAim == true then
+DaHoodSettings.SilentAim = false
+end
+end
+end
+end)
+
+local ping 
+local Value 
+local pingValue 
+local PingNumber 
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    
+     ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+     Value = tostring(ping)
+     pingValue = Value:split(" ")
+     PingNumber = pingValue[1]
+    
+     DaHoodSettings.Prediction = PingNumber / 95000 + _G.PRED
 end)
