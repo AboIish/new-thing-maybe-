@@ -1,4 +1,4 @@
-_G.PRED = 0.0000100
+_G.PRED = 0.000400
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/AustraIia/new-thing-maybe-/main/aiming"))()
 Aiming.TeamCheck(false)
 
@@ -14,7 +14,7 @@ local CurrentCamera = Workspace.CurrentCamera
 local DaHoodSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.14,
+    Prediction = 0.146,
     AimLockKeybind = Enum.KeyCode.E
 }
 getgenv().DaHoodSettings = DaHoodSettings
@@ -132,5 +132,5 @@ game:GetService("RunService").RenderStepped:Connect(function()
      pingValue = Value:split(" ")
      PingNumber = pingValue[1]
     
-     DaHoodSettings.Prediction = PingNumber / 91000 + _G.PRED
+     DaHoodSettings.Prediction = PingNumber / 80000 + _G.PRED
 end)
